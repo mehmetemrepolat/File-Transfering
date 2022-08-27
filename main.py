@@ -8,7 +8,7 @@ import os as os
 from os import listdir
 
 #fotolar = "/home/mehmetemrepolat/Desktop/deneme/dataset/train/images"
-txt = "txt/"
+#txt = "txt/"
 
 txt_list = listdir(txt)
 
