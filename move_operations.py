@@ -1,6 +1,7 @@
 import os
 import heapq
 import random
+from os.path import exists
 
 
 def rename_files(folder_path):
@@ -13,6 +14,23 @@ def rename_files(folder_path):
                 new_filename = str(i) + ".png"
             os.rename(os.path.join(folder_path, filename), os.path.join(folder_path, new_filename))
             i += 1
+
+
+def special_rename_files(path):  # I'm going to fix this later
+    files = os.listdir(path)
+    files.sort()
+    for i, file_name in enumerate(files):
+        new_file_name = ""
+        if i < 26:
+            new_file_name = chr(ord('a') + i) + ".txt"
+        else:
+            first_char = chr(ord('a') + (i // 26) - 1)
+            second_char = chr(ord('a') + (i % 26))
+            new_file_name = first_char + "_" + second_char + ".txt"
+            if(exists(f'{path}/{new_file_name}')):
+                pass
+            else:
+                os.rename(os.path.join(path, file_name), os.path.join(path, new_file_name))
 
 def change_extension(folder_path, old_extension, new_extension):
     for filename in os.listdir(folder_path):
@@ -64,3 +82,4 @@ def move_random_files(src_folder, dst_folder, num_files, file_extension=None):
 # change_extension(input("File Path:"), input("Enter the extensions that need to be changed:"), input("Enter the extension to be changed:"))
 # move_largest_files('Person2','Person1' , 15)
 # move_random_files('Person1', 'Person2', 20)
+#special_rename_files('Person3')
